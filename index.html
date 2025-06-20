@@ -24,7 +24,6 @@
         
         html, body {
             height: 100vh;
-            overflow: hidden;
             font-family: 'Crimson Text', serif;
             background-color: var(--dark-bg);
             color: var(--dark-text);
@@ -33,10 +32,41 @@
             padding: 0;
         }
         
+        /* Desktop: Keep overflow hidden for full screen */
+        @media (min-width: 768px) {
+            html, body {
+                overflow: hidden;
+            }
+        }
+        
+        /* Mobile: Allow scrolling */
+        @media (max-width: 767px) {
+            html, body {
+                overflow-x: hidden;
+                overflow-y: auto;
+                height: auto;
+                min-height: 100vh;
+            }
+        }
+        
         .main-container {
-            height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+        
+        /* Desktop: Full height */
+        @media (min-width: 768px) {
+            .main-container {
+                height: 100vh;
+            }
+        }
+        
+        /* Mobile: Auto height */
+        @media (max-width: 767px) {
+            .main-container {
+                min-height: 100vh;
+                height: auto;
+            }
         }
         
         .newspaper-header {
@@ -68,10 +98,27 @@
         .masthead h1 {
             font-family: 'Playfair Display', serif;
             font-weight: 900;
-            font-size: 3rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             margin-bottom: 0.3rem;
             color: var(--accent-orange-light);
+        }
+        
+        /* Desktop header size */
+        @media (min-width: 768px) {
+            .masthead h1 {
+                font-size: 3.6rem;
+            }
+        }
+        
+        /* Mobile header size */
+        @media (max-width: 767px) {
+            .masthead h1 {
+                font-size: 2.5rem;
+            }
+            
+            .newspaper-header {
+                padding: 0.8rem 0;
+            }
         }
         
         .masthead .subtitle {
@@ -79,6 +126,12 @@
             opacity: 0.9;
             font-style: italic;
             color: var(--dark-text-secondary);
+        }
+        
+        @media (max-width: 767px) {
+            .masthead .subtitle {
+                font-size: 1rem;
+            }
         }
         
         .date-line {
@@ -93,17 +146,44 @@
         
         .content-wrapper {
             flex: 1;
-            overflow: hidden;
             padding: 1rem;
             background: var(--dark-bg);
         }
         
+        /* Desktop: Fixed height with overflow */
+        @media (min-width: 768px) {
+            .content-wrapper {
+                overflow: hidden;
+            }
+        }
+        
+        /* Mobile: Auto height */
+        @media (max-width: 767px) {
+            .content-wrapper {
+                padding: 0.8rem;
+            }
+        }
+        
         .menu-grid {
-            height: 100%;
             display: grid;
-            grid-template-columns: 1fr  1fr;
-            grid-template-rows: auto;
             gap: 1rem;
+        }
+        
+        /* Desktop: 2 column grid with full height */
+        @media (min-width: 768px) {
+            .menu-grid {
+                height: 100%;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+        }
+        
+        /* Mobile: Single column grid */
+        @media (max-width: 767px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
         }
         
         .special-offer {
@@ -143,7 +223,6 @@
         .special-offer h1 {
             font-family: 'Playfair Display', serif;
             font-weight: 900;
-            font-size: 1.8rem;
             margin-bottom: 0.5rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             position: relative;
@@ -152,10 +231,42 @@
         }
         
         .special-offer h2 {
-            font-size: 1.1rem;
             margin-bottom: 0;
             position: relative;
             z-index: 2;
+            color: #1a1a1a;
+        }
+        
+        /* Desktop special offer sizes */
+        @media (min-width: 768px) {
+            .special-offer h1 {
+                font-size: 65px;
+            }
+            
+            .special-offer h2 {
+                font-size: 40px;
+            }
+        }
+        
+        /* Mobile special offer sizes */
+        @media (max-width: 767px) {
+            .special-offer {
+                padding: 0.8rem;
+            }
+            
+            .special-offer h1 {
+                font-size: 2.2rem;
+            }
+            
+            .special-offer h2 {
+                font-size: 1.1rem;
+                line-height: 1.3;
+                margin-bottom: 0.5rem;
+            }
+            
+            .special-offer h2:last-child {
+                margin-bottom: 0;
+            }
         }
         
         .menu-section {
@@ -166,7 +277,13 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            height: 100%;
+        }
+        
+        /* Desktop: Fixed height */
+        @media (min-width: 768px) {
+            .menu-section {
+                height: 100%;
+            }
         }
         
         .menu-category {
@@ -174,7 +291,6 @@
             color: white;
             font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 1.1rem;
             padding: 0.8rem;
             text-align: center;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
@@ -182,10 +298,39 @@
             color: #1a1a1a;
         }
         
+        /* Desktop category size */
+        @media (min-width: 768px) {
+            .menu-category {
+                font-size: 2.2rem;
+                padding: 1rem;
+            }
+        }
+        
+        /* Mobile category size */
+        @media (max-width: 767px) {
+            .menu-category {
+                font-size: 1.3rem;
+                padding: 0.7rem;
+            }
+        }
+        
         .menu-items {
             padding: 1rem;
             flex: 1;
-            overflow-y: auto;
+        }
+        
+        /* Desktop: Auto overflow */
+        @media (min-width: 768px) {
+            .menu-items {
+                overflow-y: auto;
+            }
+        }
+        
+        /* Mobile: Reduced padding */
+        @media (max-width: 767px) {
+            .menu-items {
+                padding: 0.8rem;
+            }
         }
         
         .menu-item {
@@ -208,21 +353,46 @@
         
         .item-name {
             font-weight: 600;
-            font-size: 1rem;
             flex-grow: 1;
             color: var(--dark-text);
         }
         
+        /* Desktop item name size */
+        @media (min-width: 768px) {
+            .item-name {
+                font-size: 3rem;
+            }
+        }
+        
+        /* Mobile item name size */
+        @media (max-width: 767px) {
+            .item-name {
+                font-size: 1.1rem;
+            }
+        }
+        
         .item-description {
-            font-size: 0.8rem;
             color: var(--dark-text-secondary);
             font-style: italic;
             margin-top: 0.1rem;
         }
         
+        /* Desktop description size */
+        @media (min-width: 768px) {
+            .item-description {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Mobile description size */
+        @media (max-width: 767px) {
+            .item-description {
+                font-size: 0.8rem;
+            }
+        }
+        
         .item-price {
             font-weight: 700;
-            font-size: 1.1rem;
             color: var(--accent-orange-light);
             min-width: 60px;
             text-align: right;
@@ -243,6 +413,21 @@
             color: var(--dark-text);
         }
         
+        /* Desktop price size */
+        @media (min-width: 768px) {
+            .item-price {
+                font-size: 2.3rem;
+            }
+        }
+        
+        /* Mobile price size */
+        @media (max-width: 767px) {
+            .item-price {
+                font-size: 1.2rem;
+                min-width: 50px;
+            }
+        }
+        
         .opening-hours {
             background: var(--dark-surface);
             border: 2px solid var(--border-dark);
@@ -251,7 +436,13 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.5);
             display: flex;
             flex-direction: column;
-            height: 100%;
+        }
+        
+        /* Desktop: Fixed height */
+        @media (min-width: 768px) {
+            .opening-hours {
+                height: 100%;
+            }
         }
         
         .opening-hours h3 {
@@ -302,12 +493,23 @@
             font-size: 0.9rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+            visibility: hidden;
         }
         
         .edit-mode-toggle:hover {
             background: var(--accent-orange-dark);
             transform: translateY(-1px);
             box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
+        }
+        
+        /* Mobile: Smaller edit button */
+        @media (max-width: 767px) {
+            .edit-mode-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
         }
         
         .edit-instructions {
@@ -334,33 +536,37 @@
             color: var(--accent-orange);
         }
         
+        /* Mobile: Adjust edit instructions */
+        @media (max-width: 767px) {
+            .edit-instructions {
+                top: 50px;
+                right: 10px;
+                max-width: 250px;
+                padding: 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
         
-            .masthead h1 {
-                font-size: 3.6rem;
-            }
-            
-            .menu-category {
-                font-size: 2.2rem;
-                padding: 1rem;
-            }
-            
-            .item-name {
-                font-size: 3rem;
-            }
-            
-            .item-description {
-                font-size: 0.9rem;
+        /* Mobile: Touch-friendly spacing */
+        @media (max-width: 767px) {
+            .menu-item {
+                padding: 0.7rem 0;
+                min-height: 44px; /* iOS touch target guideline */
             }
             
             .item-price {
-                font-size: 2.3rem;
+                padding: 0.4rem 0.6rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
-        
+        }
     </style>
 </head>
 <body>
     <div class="main-container">
-        <button style="visibility: hidden;" class="edit-mode-toggle" onclick="toggleEditMode()">
+        <button class="edit-mode-toggle" onclick="toggleEditMode()">
             <i class="fas fa-edit me-2"></i>
             <span id="edit-btn-text">Preise bearbeiten</span>
         </button>
@@ -382,11 +588,10 @@
             <div class="container-fluid h-100">
                 <div class="menu-grid">
                     <div class="special-offer">
-                        <h1 style="font-size: 65px;"><i class="fas fa-cocktail me-2"></i>Specials</h1>
+                        <h1><i class="fas fa-cocktail me-2"></i>Specials</h1>
                         <br>
-                        <h2 style="font-size: 40px; color: #1a1a1a;">Weinschorle <strong>2€</strong></h2>
-                        <h2 style="font-size: 40px; color: #1a1a1a;"> HAPPY HOUR • Alle Longdrinks nur <strong>3€</strong> • 21:00 - 22:00 Uhr !</h2>
-                        
+                        <h2>Weinschorle <strong>2€</strong></h2>
+                        <h2>HAPPY HOUR • Alle Longdrinks nur <strong>3€</strong> • 21:00 - 22:00 Uhr !</h2>
                     </div>
 
                     <div class="menu-section">
@@ -416,10 +621,11 @@
                                 <div>
                                     <div class="item-name">Club Mate</div>
                                 </div>
-                                <div class="item-price" data-category="softdrinks" data-item="spezi">2,00€</div>
+                                <div class="item-price" data-category="softdrinks" data-item="club-mate">2,00€</div>
                             </div>
                         </div>
                     </div>
+
                     <div class="menu-section">
                         <div class="menu-category">
                             <i class="fas fa-beer me-2"></i>BIER
@@ -429,20 +635,19 @@
                                 <div>
                                     <div class="item-name">Benediktiner Helles</div>
                                 </div>
-                                <div class="item-price" data-category="bier" data-item="bitburger">2,00€</div>
+                                <div class="item-price" data-category="bier" data-item="benediktiner">2,00€</div>
                             </div>
                             <div class="menu-item">
                                 <div>
                                     <div class="item-name">Oberdorfer Helles</div>
-                                    <!--<div class="item-description">Bavarian Premium Gold</div>-->
                                 </div>
-                                <div class="item-price" data-category="bier" data-item="augustiner">2,00€</div>
+                                <div class="item-price" data-category="bier" data-item="oberdorfer">2,00€</div>
                             </div>
                             <div class="menu-item">
                                 <div>
                                     <div class="item-name">Glaabsbräu 1744 Kellerbier</div>
                                 </div>
-                                <div class="item-price" data-category="bier" data-item="desperados">1,50€</div>
+                                <div class="item-price" data-category="bier" data-item="glaabsbraeu">1,50€</div>
                             </div>
                         </div>
                     </div>
@@ -462,7 +667,7 @@
                                 <div>
                                     <div class="item-name">Jägermeister Energy</div>
                                 </div>
-                                <div class="item-price" data-category="longdrinks" data-item="jaeger-redbull">3,50€</div>
+                                <div class="item-price" data-category="longdrinks" data-item="jaeger-energy">3,50€</div>
                             </div>
                             <div class="menu-item">
                                 <div>
@@ -478,8 +683,6 @@
                             </div>
                         </div>
                     </div>
-
-                    
 
                     <div class="menu-section">
                         <div class="menu-category">
@@ -508,7 +711,7 @@
                                 <div>
                                     <div class="item-name">Pfeffi</div>
                                 </div>
-                                <div class="item-price" data-category="shots" data-item="tequila-shot">1,00€</div>
+                                <div class="item-price" data-category="shots" data-item="pfeffi">1,00€</div>
                             </div>
                             <div class="menu-item">
                                 <div>
@@ -526,12 +729,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
         // Set current date
-        document.getElementById('current-date').textContent = new Date().toLocaleDateString('de-DE', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
+        const dateElement = document.getElementById('current-date');
+        if (dateElement) {
+            dateElement.textContent = new Date().toLocaleDateString('de-DE', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
 
         // Price editing functionality
         let editMode = false;
@@ -597,8 +803,9 @@
             input.type = 'text';
             input.value = currentPrice;
             input.className = 'item-price editing';
-            input.style.width = '60px';
+            input.style.width = window.innerWidth <= 767 ? '50px' : '60px';
             input.style.textAlign = 'right';
+            input.style.fontSize = window.getComputedStyle(priceElement).fontSize;
             
             priceElement.style.display = 'none';
             priceElement.parentNode.insertBefore(input, priceElement);
@@ -653,5 +860,3 @@
             });
         });
     </script>
-</body>
-</html>
